@@ -89,35 +89,35 @@ export default function Dashboard() {
   return (
     <div className="max-w-6xl mx-auto p-6 md:py-12">
       {/* Navigation & Header */}
-      <div className="flex flex-col gap-6 mb-12">
-        <button
-          onClick={() => router.push("/")}
-          className="group flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors w-fit"
-        >
-          <div className="p-2 rounded-full group-hover:bg-gray-100 transition-colors">
-            <ArrowLeft size={20} />
-          </div>
-          <span className="font-semibold text-sm">Back</span>
-        </button>
+    <div className="flex flex-col gap-6 mb-12">
+  <button
+    onClick={() => router.push("/")}
+    className="group flex items-center gap-2 text-gray-500 hover:text-purple-700 transition-colors w-fit"
+  >
+    <div className="p-2 rounded-full group-hover:bg-purple-50 transition-colors">
+      <ArrowLeft size={20} className="group-hover:text-purple-600" />
+    </div>
+    <span className="font-semibold text-sm">Back</span>
+  </button>
 
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-              My Listings
-            </h1>
-            <p className="text-gray-500 mt-1">
-              Manage and monitor your property performance
-            </p>
-          </div>
-          <Link
-            href="/dashboard/add-room"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3.5 rounded-2xl font-bold hover:bg-blue-700 hover:-translate-y-0.5 transition-all shadow-lg shadow-blue-100"
-          >
-            <Plus size={20} />
-            <span>Add New Room</span>
-          </Link>
-        </div>
-      </div>
+  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+        My <span className="bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">Listings</span>
+      </h1>
+      <p className="text-gray-500 mt-1">
+        Manage and monitor your property performance
+      </p>
+    </div>
+    <Link
+      href="/dashboard/add-room"
+      className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-teal-500 text-white px-6 py-3.5 rounded-2xl font-bold hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-0.5 transition-all"
+    >
+      <Plus size={20} />
+      <span>Add New Room</span>
+    </Link>
+  </div>
+</div>
 
       {/* Grid / List Section */}
       {rooms.length > 0 ? (

@@ -45,44 +45,79 @@ export default function EditRoomModal({ room, onClose, onSuccess }: { room: any,
           <X size={24} className="text-gray-500" />
         </button>
         
-        <h2 className="text-2xl font-black mb-6">Edit Property Details</h2>
+        <div className="mb-8">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-teal-100 px-4 py-2 rounded-full mb-4">
+            <span className="text-sm font-medium text-purple-700">Edit Property</span>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Update Property Details</h2>
+          <p className="text-gray-500 text-sm">Make changes to your rental listing</p>
+        </div>
 
-        <form onSubmit={handleUpdate} className="space-y-4">
-          <input 
-            className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-500" 
-            placeholder="Title" 
-            value={formData.title} 
-            onChange={e => setFormData({...formData, title: e.target.value})}
-          />
-          <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleUpdate} className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-gray-700">Property Title</label>
             <input 
-              type="number"
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none" 
-              placeholder="Rent" 
-              value={formData.rent_price} 
-              onChange={e => setFormData({...formData, rent_price: e.target.value})}
-            />
-            <input 
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none" 
-              placeholder="Location" 
-              value={formData.location} 
-              onChange={e => setFormData({...formData, location: e.target.value})}
+              className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all" 
+              placeholder="e.g., Spacious 2BHK Apartment" 
+              value={formData.title} 
+              onChange={e => setFormData({...formData, title: e.target.value})}
+              required
             />
           </div>
-          <textarea 
-            className="w-full p-4 bg-gray-50 rounded-2xl border-none h-32" 
-            placeholder="Description"
-            value={formData.description}
-            onChange={e => setFormData({...formData, description: e.target.value})}
-          />
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-700">Monthly Rent (₹)</label>
+              <input 
+                type="number"
+                className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all" 
+                placeholder="e.g., 15000" 
+                value={formData.rent_price} 
+                onChange={e => setFormData({...formData, rent_price: e.target.value})}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-700">Location</label>
+              <input 
+                className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all" 
+                placeholder="e.g., Bandra, Mumbai" 
+                value={formData.location} 
+                onChange={e => setFormData({...formData, location: e.target.value})}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-gray-700">Description</label>
+            <textarea 
+              className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all h-32 resize-none" 
+              placeholder="Describe your property's features, amenities, and neighborhood..."
+              value={formData.description}
+              onChange={e => setFormData({...formData, description: e.target.value})}
+            />
+          </div>
           
           <button 
             type="submit" 
-            className="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all flex justify-center items-center"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-purple-600 to-teal-500 text-white py-4 rounded-2xl font-bold hover:shadow-lg hover:shadow-purple-500/30 transition-all flex justify-center items-center gap-2"
           >
-            {loading ? <Loader2 className="animate-spin mr-2" /> : "Update Listing"}
+            {loading ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin" />
+                Updating...
+              </>
+            ) : (
+              'Update Property Listing'
+            )}
           </button>
         </form>
+
+        <p className="text-center text-xs text-gray-400 mt-6">
+          Changes will be reflected immediately after update
+        </p>
       </div>
     </div>
   );
